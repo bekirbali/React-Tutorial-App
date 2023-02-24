@@ -18,18 +18,7 @@ const TutorialList = ({ tutorials, getTutorials }) => {
     getTutorials();
   };
 
-  const editTutorial = async ({ id, title, description }) => {
-    const BASE_URL = "https://tutorial-api.fullstack.clarusway.com/tutorials/";
-    try {
-      await axios.put(`${BASE_URL}${id}/`, { title, description });
-    } catch (error) {
-      console.log(error);
-    }
-    getTutorials();
-  };
-
   const setItems = ({ id, title, description }) => {
-    console.log(title);
     setTitle(title);
     setDescription(description);
     setId(id);
@@ -77,6 +66,8 @@ const TutorialList = ({ tutorials, getTutorials }) => {
         description={description}
         id={id}
         getTutorials={getTutorials}
+        setTitle={setTitle}
+        setDescription={setDescription}
       />
     </div>
   );

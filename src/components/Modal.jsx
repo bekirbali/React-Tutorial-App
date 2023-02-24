@@ -1,16 +1,27 @@
 import axios from "axios";
-import { useState } from "react";
+// import { useEffect, useState } from "react";
 
-const Modal = ({ title, description, id, getTutorials }) => {
-  const [titleText, setTitleText] = useState("");
-  const [descriptionText, setDescriptionText] = useState("");
+const Modal = ({
+  title,
+  description,
+  id,
+  getTutorials,
+  setTitle,
+  setDescription,
+}) => {
+  // const [titleText, setTitleText] = useState(title);
+  // const [descriptionText, setDescriptionText] = useState(description);
+  // console.log(title, description);
+  // useEffect(() => {
+  //   setTitleText(title);
+  // }, []);
 
-  const titleChanger = (e) => {
-    setTitleText(e.target.value);
-  };
-  const descChanger = (e) => {
-    setDescriptionText(e.target.value);
-  };
+  // const titleChanger = (e) => {
+  //   setTitleText(e.target.value);
+  // };
+  // const descChanger = (e) => {
+  //   setDescriptionText(e.target.value);
+  // };
 
   const putChanges = async (newItems) => {
     const BASE_URL = "https://tutorial-api.fullstack.clarusway.com/tutorials/";
@@ -23,11 +34,10 @@ const Modal = ({ title, description, id, getTutorials }) => {
   };
 
   const saveChanges = () => {
-    console.log(titleText, descriptionText, id);
-    const newItems = { title: titleText, description: descriptionText };
+    const newItems = { title: title, description: description };
     putChanges(newItems);
-    setTitleText("");
-    setDescriptionText("");
+    setTitle("");
+    setDescription("");
   };
   return (
     <div className="modal" tabIndex="-1" id="edit">
@@ -39,10 +49,10 @@ const Modal = ({ title, description, id, getTutorials }) => {
             </label>
             <input
               tabIndex="1"
-              onChange={titleChanger}
+              onChange={(e) => setTitle(e.target.value)}
               className="form-control"
               id="title"
-              value={titleText}
+              value={title}
             />
             <button
               tabIndex="5"
@@ -58,10 +68,10 @@ const Modal = ({ title, description, id, getTutorials }) => {
             </label>
             <input
               tabIndex="2"
-              onChange={descChanger}
+              onChange={(e) => setDescription(e.target.value)}
               className="form-control"
               id="desc"
-              value={descriptionText}
+              value={description}
             />
           </div>
           <div className="modal-footer">
